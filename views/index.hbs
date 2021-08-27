@@ -1,0 +1,73 @@
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Node.js Graph Tutorial</h1>
+        <p class="lead">This sample app shows how to use the Microsoft Graph API to access a user's data from Node.js
+        </p>
+        {{#if user}}
+        <h4>Welcome {{ user.displayName }}!</h4>
+        <p class="col-md-8 fs-6">Use the navigation bar at the top of the page to get started.</p>
+        {{else}}
+        <a href="/auth/signin" class="btn btn-primary btn-large">Click here to sign in</a>
+        {{/if}}
+    </div>
+</div>
+
+{{#if groups}}
+<h1 class="mb-3">Groups</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">desc</th>
+            <th scope="col">Members</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each groups.value}}
+        <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.displayName}}</td>
+            <td>{{this.description}}</td>
+            <td>
+                <ul>
+                    {{#each this.members.value}}
+
+                    <li>
+                        {{this.displayName}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </td>      
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{/if}}
+
+{{#if users}}
+<h1 class="mb-3">Users</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Job Title</th>
+            <th scope="col">date created</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users.value}}
+        <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.displayName}}</td>
+            <td>{{this.jobTitle}}</td>
+            <td>{{this.mail}}</td>
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+ {{/if}}
